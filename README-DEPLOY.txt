@@ -14,3 +14,6 @@ Settings > Pages > Deploy from a branch > main > /(root)
 
 All local asset references are relative paths, so the site works under:
 https://quynh-23.github.io/wedding-invitation/
+
+
+GitHub Pages fix: use root folders css/, js/, images/, audio/. Image error handlers are guarded to prevent recursive requests. Audio uses preload=none.

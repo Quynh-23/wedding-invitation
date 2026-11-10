@@ -212,7 +212,9 @@ PHOTO_LIST.forEach((src, i) => {
   img.src = src;
   img.alt = 'Ảnh cưới ' + (i + 1);
   img.onerror = function () {
-    this.src = 'images/hero.jpg';
+    this.onerror = null;
+    this.removeAttribute('src');
+    this.alt = 'Không thể tải ảnh';
   };
   b.appendChild(img);
   b.addEventListener('click', () => showPhoto(i));
