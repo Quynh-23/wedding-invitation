@@ -1,0 +1,1927 @@
+:root {
+  --paper: #fbfcf8;
+  --paper2: #ffffff;
+  --blue: #245b46; /* Xanh lá trầm theo mẫu thiệp */
+  --blue2: #174532;
+  --ink: #30352f;
+  --olive: #527b60;
+  --rose: #e2efd9; /* Xanh sage nhạt */
+  --line: #dce8d5;
+  --shadow: 0 12px 36px #4a392318;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Montserrat, Arial, sans-serif;
+  font-weight: 300;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+.site {
+  max-width: 760px;
+  margin: auto;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 0 45px #392c1910;
+  position: relative;
+}
+
+section {
+  text-align: center;
+  padding: 68px 24px;
+  position: relative;
+}
+
+.script {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+}
+
+.serif {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.23em;
+  text-transform: uppercase;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.section-title {
+  font: 400 clamp(42px, 8vw, 60px) "Great Vibes", cursive;
+  color: var(--olive);
+  margin: 0 0 22px;
+}
+
+/* Nút điều khiển góc màn hình */
+.top-actions {
+  position: fixed;
+  z-index: 50;
+  top: 13px;
+  left: max(13px, calc((100vw - 730px) / 2));
+  right: max(13px, calc((100vw - 730px) / 2));
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.action {
+  pointer-events: auto;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: var(--olive);
+  color: #fff;
+  box-shadow: 0 3px 13px rgba(109, 74, 58, 0.3);
+  font-size: 18px;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s;
+}
+
+.action:active {
+  transform: scale(0.92);
+}
+
+/* .action.dark {
+  background: #3c322c;
+} */
+
+/* HERO SECTION */
+.hero {
+  padding: 58px 0 10px;
+  text-align: center;
+  background: white;
+}
+
+.hero-heading {
+  padding: 0px 15px;
+  text-align: center;
+}
+
+.monogram {
+  font: 50px "Great Vibes", cursive;
+  color: var(--blue);
+  margin: 0 auto 2px;
+  text-align: center;
+}
+
+.couple-names {
+  font: clamp(30px, 9vw, 64px) / 1.05 "Cormorant Garamond", serif;
+  margin: 15px auto 0px;
+  color: #37322e;
+  text-align: center;
+}
+
+.couple-names .amp {
+  color: var(--blue);
+  padding: 0 8px;
+}
+
+/* KHỐI 3 CỘT THÔNG TIN NGÀY GIỜ ĐỊA ĐIỂM */
+.event-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2.3fr;
+  max-width: 590px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.event-strip div {
+  font-size: 11px;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  padding: 4px 10px;
+  border-right: 1px solid #3c3935;
+  text-align: center;
+}
+
+.event-strip div:last-child {
+  border: 0;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 72vw, 520px);
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* INTRO */
+.intro {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.date-label {
+  font: 25px "Cormorant Garamond", serif;
+  color: var(--blue);
+  letter-spacing: 0.08em;
+}
+
+.rule {
+  width: 52px;
+  height: 1px;
+  background: var(--blue);
+  margin: 20px auto;
+}
+
+.quote {
+  font: italic 21px / 1.55 "Cormorant Garamond", serif;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.families {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 30px; 
+}
+
+.families h3 {
+  font: 500 28px "Cormorant Garamond", serif;
+  color: var(--blue);
+  margin: 0 0 10px;
+}
+
+.families p {
+  font: 16px / 1.65 "Cormorant Garamond", serif;
+  margin: 0;
+}
+
+.families em {
+  font-size: 15px;
+  color: #7d6b63;
+}
+
+/* INVITATION SECTION */
+.invitation {
+  padding-top: 38px;
+  padding-bottom: 0px;
+  background: repeating-linear-gradient(45deg, #f9f6ef, #f9f6ef 5px, #f1eadf 5px, #f1eadf 6px);
+}
+.names-large {
+  font: clamp(38px, 8vw, 60px) / 1.15 "Cormorant Garamond", serif;
+  color: var(--blue);
+  margin: 15px 0;
+}
+
+.invitation-monogram {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 24px;
+}
+
+.invitation-monogram img {
+    display: block;
+    width: 110px;
+    height: auto;
+    max-width: 40%;
+    object-fit: contain;
+}
+.and {
+  font: 36px "Great Vibes", cursive;
+  color: var(--olive);
+}
+
+.invite-line {
+  font: 24px / 1.5 "Cormorant Garamond", serif;
+  margin: 20px 0;
+}
+
+.date-layout {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+  margin: 25px 0 12px;
+}
+
+.date-number {
+  font: 500 clamp(66px, 15vw, 96px) / 1 Montserrat, sans-serif;
+  color: var(--blue);
+}
+
+.lunar {
+  font: 16px "Cormorant Garamond", serif;
+  color: #777;
+}
+
+.venue {
+  font: 28px "Cormorant Garamond", serif;
+  color: var(--blue);
+  margin: 20px 0 0;
+}
+
+.subvenue {
+  font: 18px "Cormorant Garamond", serif;
+  color: #6b6862;
+  margin-top: 3px;
+}
+
+.btn {
+  border: 0;
+  background: var(--blue);
+  color: white;
+  border-radius: 28px;
+  padding: 13px 27px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  margin-top: 17px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn:hover {
+  background: var(--blue2);
+  transform: translateY(-2px);
+}
+
+/* TIMELINE & DRESSCODE */
+.soft-panel {
+  background: repeating-linear-gradient(45deg, #f9f6ef, #f9f6ef 5px, #f1eadf 5px, #f1eadf 6px);
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.event-icon {
+  font-size: 35px;
+}
+
+.event-time {
+  font: 28px "Cormorant Garamond", serif;
+  margin: 10px 0 3px;
+  color: var(--blue);
+}
+
+.event-caption {
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.swatches {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin: 32px 0 22px;
+}
+
+.swatch {
+  width: 51px;
+  height: 51px;
+  border: 1px solid #777;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* STORY */
+.story {
+  background: #f2ede3;
+  text-align: left;
+  padding: 65px 30px;
+}
+
+.story .section-title {
+  text-align: center;
+  color: #413d38;
+}
+
+.story p {
+  font: 20px / 1.7 "Cormorant Garamond", serif;
+  color: #5d463d;
+  margin: 0;
+}
+
+.signature {
+  text-align: right;
+  font: 33px "Great Vibes", cursive;
+  color: var(--olive);
+  margin-top: 18px;
+}
+
+/* ===================================================
+   SAVE THE DATE (LỊCH ĐÈ LÊN ẢNH, NẰM GIỮA)
+   =================================================== */
+.save-date-container {
+  position: relative;
+  width: min(100%, 580px);
+  margin: 90px auto 40px;
+}
+
+.save-date-photo-wrap {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 16px 38px rgba(50, 40, 35, 0.14);
+  background: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.save-date-photo-wrap img {
+  width: 100%;
+  height: clamp(400px, 52vh, 480px);
+  object-fit: cover;
+  object-position: center 05%;
+  display: block;
+}
+
+.calendar-card {
+  position: absolute;
+  top: -170px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68%;
+  min-width: 240px;
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(235, 226, 215, 0.95);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.15);
+  z-index: 3;
+  text-align: center;
+}
+
+.month {
+  font: 26px "Great Vibes", cursive;
+  color: var(--blue);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 12px;
+  font-family: Montserrat, sans-serif;
+}
+
+.calendar-grid span {
+  padding: 4px 0;
+  color: #89857e;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-grid .day {
+  color: #46413b;
+  font-weight: 500;
+}
+
+.calendar-grid .chosen {
+  background: var(--blue);
+  color: #fff !important;
+  border-radius: 50%;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.countdown-wrap {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  z-index: 4;
+  text-align: center;
+}
+
+.count-label {
+  font: italic 20px "Great Vibes", cursive;
+  color: var(--blue);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+  margin-bottom: 4px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+}
+
+.count-box {
+  background: var(--blue);
+  backdrop-filter: blur(4px);
+  color: white;
+  min-width: 54px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+  font-size: 10px;
+}
+
+.count-box strong {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+/* GALLERY SLIDER */
+.gallery-frame {
+  border: 5px solid var(--blue);
+  padding: 9px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: auto;
+  background: var(--paper2);
+}
+
+.gallery-main {
+  width: 100%;
+  height: clamp(245px, 65vw, 390px);
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.gallery-controls button {
+  border: 0;
+  background: var(--paper);
+  color: var(--blue);
+  font-size: 24px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+.thumbs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-top: 9px;
+}
+
+.thumb {
+  flex: 0 0 74px;
+  height: 62px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  overflow: hidden;
+  background: none;
+}
+
+.thumb.active {
+  border-color: var(--blue);
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.rsvp-note {
+  font: 22px / 1.55 "Cormorant Garamond", serif;
+  color: var(--blue);
+  max-width: 500px;
+  margin: 0 auto 28px;
+}
+
+/* RSVP FORM */
+.form-card {
+  max-width: 450px;
+  margin: auto;
+  text-align: left;
+  background: #fffdfb;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+}
+
+.form-card h3 {
+  text-align: center;
+  font-size: 18px;
+  margin: 0 0 20px;
+  color: var(--blue);
+}
+
+.field {
+  margin: 15px 0;
+}
+
+.field > label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.field input:not([type=radio]),
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dedbd5;
+  border-radius: 5px;
+  background: white;
+  color: #333;
+  font-size: 13px;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--blue);
+}
+
+.radio-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+.radio-line input {
+  accent-color: var(--blue);
+}
+
+.form-card .btn {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.form-msg {
+  text-align: center;
+  font-size: 12px;
+  color: var(--olive);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+/* GIFT BOX */
+.gift-emoji {
+  font-size: 64px;
+}
+
+.gift-title {
+  font: 32px "Cormorant Garamond", serif;
+  color: var(--blue);
+  margin: 12px 0;
+}
+
+.closing-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.closing-photo {
+  width: 100%;
+  height: clamp(380px, 85vh, 560px);
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.closing-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg, 
+    rgba(20, 15, 15, 0.05) 0%, 
+    rgba(20, 15, 15, 0.35) 45%, 
+    rgba(20, 15, 15, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.closing-text {
+  position: absolute;
+  top: 122px;
+  left: 20px;
+  right: 20px;
+  z-index: 2;
+  text-align: center;
+  color: #ffffff;
+  font: 20px / 1.6 "Cormorant Garamond", serif;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  padding: 0;
+}
+
+.closing-text .script {
+  display: block;
+  font-size: 38px;
+  color: white;
+  margin-top: 8px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
+}
+
+.closing-text .footer-small {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: #e0d7d2;
+  margin-top: 18px;
+}
+
+.footer-small {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #999;
+  margin-top: 24px;
+}
+
+/* FLOATING WISHES */
+.floating-wishes {
+  position: fixed;
+  z-index: 15;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94vw, 420px);
+  pointer-events: none;
+  display: grid;
+  gap: 5px;
+}
+
+.wish {
+  background: rgba(135, 91, 82, 0.88);
+  color: white;
+  border-radius: 8px;
+  padding: 7px 10px;
+  text-align: left;
+  font-size: 10px;
+  line-height: 1.4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: floatin 0.5s ease both;
+}
+
+@keyframes floatin {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  background: rgba(33, 29, 26, 0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-card {
+  background: #fff;
+  width: min(100%, 560px);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  text-align: center;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.bank-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.bank {
+  border: 1px solid #e8e4df;
+  background: #faf8f5;
+  border-radius: 12px;
+  padding: 15px 8px;
+}
+
+.qr {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 10px;
+  background: #fff;
+  border: 7px solid #fff;
+  box-shadow: 0 0 0 1px #ddd;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: #777;
+  background-image: repeating-conic-gradient(#222 0% 25%, #fff 0% 50%);
+  background-size: 12px 12px;
+  position: relative;
+}
+
+.qr span {
+  background: #fff;
+  padding: 5px;
+  text-align: center;
+}
+
+.copy {
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background: #fff;
+  padding: 7px 10px;
+  font-size: 11px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.close {
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 10px 24px;
+  border-radius: 7px;
+  margin-top: 18px;
+  cursor: pointer;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  z-index: 120;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 24px;
+  font-size: 12px;
+  display: none;
+  max-width: 90vw;
+  text-align: center;
+}
+
+/* WELCOME OVERLAY */
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(circle at 50% 40%, #ffffff 0%, #f7f2e9 60%, #efe7dc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
+}
+
+.welcome-overlay.opened {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.welcome-box {
+  width: min(420px, 100%);
+  padding: 40px 24px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e4dace;
+  border-radius: 24px;
+  box-shadow: 0 16px 45px rgba(100, 75, 60, 0.1);
+}
+
+.welcome-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.welcome-couple {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.2rem;
+  color: #373532;
+  margin-bottom: 8px;
+}
+
+.welcome-date {
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  color: #857a75;
+  margin-bottom: 20px;
+}
+
+.welcome-ring {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  animation: pulseRing 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseRing {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.welcome-btn {
+  background: var(--blue);
+  color: #ffffff;
+  border: none;
+  padding: 13px 30px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(135, 91, 82, 0.35);
+  transition: 0.3s ease;
+}
+
+.welcome-btn:hover {
+  background: var(--blue2);
+}
+
+/* ===================================================
+   PHONG BÌ MỞ THIỆP TƯƠNG TÁC
+   =================================================== */
+.interactive-envelope-wrap {
+  width: min(340px, 90vw);
+  height: 230px;
+  margin: 0px auto 0px;
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+  user-select: none;
+  transition: margin 0.6s ease;
+}
+
+.interactive-envelope {
+  position: relative;
+  width: 100%;
+  height: 215px;
+  filter: drop-shadow(0 14px 22px rgba(45, 55, 75, 0.22));
+}
+
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  z-index: 1;
+}
+
+.env-card {
+  position: absolute;
+  top: 10px;
+  left: 5%;
+  width: 90%;
+  height: 195px;
+  background: #ffffff;
+  padding: 5px;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  transition: transform 0.8s cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 0.6s ease;
+  transform: translateY(0);
+}
+
+.env-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 4px;
+  display: block;
+}
+
+.env-pocket {
+  position: absolute;
+  inset: 0;
+  background: var(--blue); 
+  clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 0 8px 8px;
+  z-index: 3;
+}
+
+.env-pocket::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.1) 100%);
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+}
+
+.env-pocket::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-135deg, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.1) 100%);
+  clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+}
+
+.env-flap-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 108px;
+  background: var(--blue);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.6s ease, z-index 0.3s ease;
+  z-index: 4;
+}
+
+.env-seal {
+  position: absolute;
+  top: 92px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  transition: transform 0.5s ease, opacity 0.4s ease;
+}
+
+.wax-seal {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.seal-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* --- TRẠNG THÁI KHI MỞ THIỆP (.opened) --- */
+.interactive-envelope-wrap.opened {
+  margin-top: 150px;
+}
+
+.interactive-envelope-wrap.opened .env-flap-top {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.interactive-envelope-wrap.opened .env-card {
+  transform: translateY(-65px);
+  z-index: 2;
+}
+
+.interactive-envelope-wrap.opened .env-seal {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 650px) {
+  section {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+  .hero-image {
+    height: 590px;
+  }
+  .story {
+    padding-left: 65px;
+    padding-right: 65px;
+  }
+}
+
+  .calendar-card {
+    width: 70%;
+    min-width: 240px;
+    top: -170px;
+    padding: 12px 14px;
+  }
+@media (max-width: 480px) {
+  .save-date-container {
+    width: 90%;
+    margin-top: 65px;
+  }
+  .calendar-card {
+    width: 70%;
+    min-width: 240px;
+    top: -200px;
+    padding: 12px 14px;
+  }
+  .month {
+    font-size: 22px;
+  }
+  .calendar-grid {
+    font-size: 11px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 380px) {
+  section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .event-strip div {
+    font-size: 10px;
+    padding: 3px;
+  }
+  .families {
+    gap: 7px;
+  }
+  .families p {
+    font-size: 14px;
+  }
+  .swatches {
+    gap: 14px;
+  }
+  .swatch {
+    width: 44px;
+    height: 44px;
+  }
+  .countdown {
+    gap: 6px;
+  }
+  .count-box {
+    min-width: 53px;
+  }
+}
+
+#invitation.invitation {
+  padding: 42px 28px 58px;
+  color: #302e2b;
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.invitation-inner {
+  width: min(100%, 650px);
+  margin: 0 auto;
+}
+
+#invitation .families {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin: 0 auto 38px;
+}
+
+#invitation .family {
+  text-align: center;
+}
+
+#invitation .family-heading {
+  margin-bottom: 5px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.035em;
+}
+
+#invitation .family p {
+  margin: 0;
+  font-size: clamp(13px, 2.4vw, 17px);
+  line-height: 1.35;
+}
+
+#invitation .family strong {
+  font-weight: 600;
+}
+
+#invitation .family em {
+  display: inline-block;
+  margin-top: 4px;
+  color: #625d57;
+  font-size: 0.88em;
+  font-style: normal;
+  letter-spacing: 0.015em;
+}
+
+.invitation-announcement {
+  margin: 0 auto 22px;
+  font-size: clamp(15px, 2.8vw, 21px);
+  line-height: 1.2;
+  letter-spacing: 0.035em;
+  font-weight: 500;
+}
+
+#invitation .names-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 18px 0 34px;
+  color: #292724;
+  font: 400 clamp(48px, 9.5vw, 76px) / 1.12 "Great Vibes", cursive;
+}
+
+#invitation .names-large .and {
+  display: block;
+  margin: 1px 0 0;
+  color: #3b3834;
+  font: 400 clamp(30px, 5vw, 40px) / 1 "Great Vibes", cursive;
+}
+
+.invitation-venue-label,
+.invitation-time-label {
+  margin: 0;
+  font-size: clamp(13px, 2.4vw, 17px);
+  line-height: 1.45;
+  letter-spacing: 0.035em;
+  font-weight: 500;
+}
+
+#invitation .venue {
+  margin: 3px 0 0;
+  color: #302e2b;
+  font: 600 clamp(17px, 3vw, 22px) / 1.35 "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.025em;
+}
+
+#invitation .subvenue {
+  margin: 0 auto;
+  color: #494641;
+  font: 500 clamp(13px, 2.5vw, 17px) / 1.35 "Cormorant Garamond", Georgia, serif;
+}
+
+.invitation-time-label {
+  margin-top: 22px;
+  font-weight: 600;
+}
+
+.invitation-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 24px);
+  margin: 5px auto 8px;
+  color: #282623;
+  font: 600 clamp(25px, 3.8vw, 25px) / 1.25 "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.07em;
+}
+
+.invitation-date strong {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.date-divider {
+  width: 1px;
+  height: 28px;
+  background: #77716a;
+}
+
+#invitation .lunar {
+  margin-top: 8px;
+  color: #625d57;
+  font-size: clamp(13px, 2.3vw, 16px);
+  letter-spacing: 0.025em;
+}
+
+#invitation .btn {
+  margin-top: 22px;
+}
+
+@media (max-width: 480px) {
+  #invitation.invitation {
+    padding: 10px 18px 48px;
+  }
+
+  #invitation .families {
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  #invitation .family p {
+    font-size: 12px;
+  }
+
+  #invitation .family em {
+    font-size: 10px;
+  }
+
+  #invitation .names-large {
+    margin: 0px;
+  }
+
+  .invitation-date {
+    gap: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .date-divider {
+    height: 23px;
+  }
+}
+
+
+/* SAGE GREEN WEDDING THEME + VU QUY INVITATION */
+body, .site { background: #fbfcf8; }
+.hero-heading, .intro { background: #fff; }
+.event-strip div { border-color: #c9d9c9; }
+#invitation.invitation {
+  padding: 14px clamp(18px, 5vw, 48px) 0px;
+  color: #30352f;
+  background: radial-gradient(ellipse at 50% 42%, rgba(226,239,217,.42), transparent 58%), #fff !important;
+}
+.invitation-inner {
+  position: relative; max-width: 650px; padding: 28px clamp(16px, 4vw, 42px) 34px;
+  border: 1px solid #e0ead9; background: linear-gradient(180deg,#fff 0%,#fbfdf9 100%);
+  box-shadow: 0 12px 38px rgba(42,83,57,.07);
+}
+.invitation-monogram {
+  margin: 0 auto 18px; text-align: center; color: #245b46;
+  font: 500 clamp(42px,8vw,66px)/1 "Cormorant Garamond",Georgia,serif; letter-spacing: -.08em;
+}
+.invitation-monogram span { display:inline-block; margin:0 7px; font:italic 25px "Great Vibes",cursive; vertical-align:middle; }
+#invitation .families { gap:26px; margin:0 auto 36px; }
+#invitation .family-heading { color:#30352f; font-size:clamp(14px,2.5vw,18px); font-weight:500; }
+#invitation .family p { font-size:clamp(13px,2.3vw,17px); line-height:1.42; }
+#invitation .family em { color:#696f65; font-style:italic; }
+.invitation-announcement {
+  color:#343832; font:500 clamp(15px,2.8vw,21px)/1.35 "Cormorant Garamond",Georgia,serif;
+  letter-spacing:.01em; margin-bottom:22px;
+}
+#invitation .names-large {
+  position:relative; width:min(100%,540px); margin:22px auto 30px; padding:19px 12px;
+  gap:4px; color:#245b46; background:#e4f0dc; border-radius:46% 5% 42% 7% / 12% 16% 10% 15%;
+  font:400 clamp(39px,8vw,66px)/1.08 "Great Vibes",cursive;
+}
+
+#invitation .names-large .and { color:#245b46; font:400 27px "Great Vibes",cursive; line-height:1; }
+.couple-role { color:#343a33; font:500 12px Montserrat,sans-serif; letter-spacing:.12em; }
+.invitation-venue-label,.invitation-time-label { color:#343832; font:500 clamp(14px,2.5vw,18px)/1.45 "Cormorant Garamond",Georgia,serif; }
+.invitation-date { color:#245b46; font:600 clamp(25px,4vw,31px)/1.2 "Cormorant Garamond",Georgia,serif; }
+.date-divider { background:#91a891; }
+#invitation .lunar { color:#626a60; font-style:italic; }
+.reception-invite {
+  width:min(100%,540px); margin:38px auto 0; padding:30px clamp(16px,4vw,36px);
+  background:#e4f0dc; color:#30382f; border-radius:150px 150px 4px 4px; text-align:center;
+}
+.reception-script { color:#245b46; font:400 clamp(30px,6vw,43px) "Great Vibes",cursive; margin-bottom:12px; }
+.guest-placeholder { padding:10px 0 13px; color:#647261; letter-spacing:.1em; font-size:13px; }
+.reception-invite p { margin:8px auto; font:500 clamp(13px,2.4vw,17px)/1.45 "Cormorant Garamond",Georgia,serif; }
+.reception-invite .venue { color:#245b46; font:600 clamp(32px,7vw,54px)/1.1 "Cormorant Garamond",Georgia,serif; margin:7px 0; }
+.reception-invite .subvenue { color:#4d5b4b; font-style:italic; }
+.reception-invite .reception-time { color:#245b46; font-weight:700; margin-top:20px; }
+.reception-date { color:#245b46; font:700 clamp(34px,7vw,52px)/1.15 "Cormorant Garamond",Georgia,serif; margin:5px 0; }
+#invitation .btn { background:#245b46; }
+#invitation .btn:hover { background:#174532; }
+@media(max-width:480px) {
+ #invitation.invitation { padding:0px 12px 42px; }
+ .invitation-inner { padding:22px 12px 26px; }
+ #invitation .families { gap:9px; }
+ #invitation .family p { font-size:11px; }
+ #invitation .family em { font-size:10px; }
+ #invitation .names-large { padding:16px 7px; }
+ .reception-invite { border-radius:110px 110px 4px 4px; }
+}
+
+
+/* =========================================================
+   REFINEMENT 2: finer calligraphy + soft watercolor brush
+   ========================================================= */
+#invitation.invitation {
+  background: #fff !important;
+}
+
+#invitation .invitation-inner {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  padding-top: 20px;
+}
+
+/* Give the family details a clearer printed-card hierarchy. */
+#invitation .family-heading {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(16px, 2.7vw, 19px);
+  font-weight: 600;
+  letter-spacing: .015em;
+  margin-bottom: 7px;
+}
+#invitation .family p {
+  color: #343a34;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(15px, 2.5vw, 18px);
+  line-height: 1.38;
+  letter-spacing: 0;
+}
+#invitation .family strong {
+  font-weight: 600;
+}
+#invitation .family em {
+  color: #697367;
+  font-size: .92em;
+  font-style: italic;
+}
+.invitation-announcement {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(17px, 2.8vw, 21px);
+  line-height: 1.42;
+  letter-spacing: 0;
+  color: #343832;
+  margin: 0 auto 24px;
+}
+
+/* No hard-edged rounded rectangle: a layered, translucent brush wash. */
+#invitation .names-large {
+  isolation: isolate;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: min(100%, 570px);
+  min-height: 190px;
+  margin: 22px auto 30px;
+  padding: 22px 12px 17px;
+  overflow: visible;
+  background: transparent;
+  border-radius: 0;
+  color: #245b46;
+  font-family: "Allura", "Great Vibes", cursive;
+  font-size: clamp(53px, 10vw, 78px);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: 0;
+  text-shadow: none;
+}
+
+#invitation .couple-role {
+  color: #384438;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .09em;
+  line-height: 1.3;
+}
+.invitation-venue-label,
+.invitation-time-label {
+  color: #343832;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(16px, 2.7vw, 19px);
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+.invitation-date {
+  color: #245b46;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(27px, 4.2vw, 34px);
+  letter-spacing: .035em;
+}
+#invitation .lunar {
+  color: #60685e;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+.reception-script {
+  font-family: "Allura", "Great Vibes", cursive;
+  font-size: clamp(37px, 7vw, 49px);
+  font-weight: 400;
+}
+.reception-invite p,
+.reception-invite .subvenue {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0;
+}
+.reception-invite .venue {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+}
+@media (max-width: 480px) {
+  #invitation .names-large {
+    min-height: 160px;
+    padding: 0px;
+    font-size: clamp(49px, 13vw, 65px);
+  }
+  #invitation .names-large::before {
+    inset: 10px -5px 8px;
+  }
+  #invitation .names-large::after {
+    inset: 20px -9px 17px;
+  }
+  #invitation .family p {
+    font-size: 13px;
+  }
+  #invitation .family-heading {
+    font-size: 15px;
+  }
+}
+
+/* =========================================================
+   CEREMONY DATE: match the reference printed invitation
+   ========================================================= */
+#invitation .ceremony-details {
+  width: 100%;
+  max-width: 570px;
+  margin: 26px auto 0;
+  text-align: center;
+  color: #30332f;
+}
+
+#invitation .invitation-venue-label {
+  margin: 0;
+  color: #30332f;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(17px, 2.8vw, 21px);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+#invitation .invitation-venue-label strong {
+  font-weight: 700;
+}
+
+#invitation .invitation-time-label {
+  margin: 2px 0 7px;
+  color: #30332f;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(17px, 2.8vw, 21px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+#invitation .invitation-date {
+  width: min(100%, 520px);
+  min-height: 76px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(82px, 1fr) minmax(104px,  .92fr) minmax(82px, 1fr);
+  align-items: center;
+  column-gap: clamp(8px, 2vw, 17px);
+  color: #245b46;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+}
+
+#invitation .date-side {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 7px 0;
+  color: #30332f;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(15px, 2.6vw, 20px);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#invitation .date-side::before,
+#invitation .date-side::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #454640;
+}
+
+#invitation .date-side::before { top: 0; }
+#invitation .date-side::after { bottom: 0; }
+
+#invitation .date-main {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  color: #245b46;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  line-height: .9;
+  white-space: nowrap;
+}
+
+#invitation .date-main strong {
+  font-size: clamp(47px, 8.2vw, 66px);
+  font-weight: 700;
+  letter-spacing: -.055em;
+}
+
+#invitation .date-slash {
+  display: inline-block;
+  margin: 0 -1px 1px 0;
+  color: #30332f;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(57px, 9vw, 73px);
+  font-weight: 400;
+  line-height: .78;
+  transform: skew(-13deg);
+}
+
+#invitation .lunar {
+  margin: 10px auto 0;
+  color: #454640;
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  font-size: clamp(16px, 2.7vw, 20px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  #invitation .ceremony-details {
+    margin-top: 22px;
+  }
+
+  #invitation .invitation-venue-label,
+  #invitation .invitation-time-label {
+    font-size: clamp(15px, 4.2vw, 18px);
+  }
+
+  #invitation .invitation-date {
+    width: 100%;
+    grid-template-columns: minmax(75px, 1fr) minmax(92px, .92fr) minmax(75px, 1fr);
+    column-gap: 7px;
+    min-height: 67px;
+  }
+
+  #invitation .date-side {
+    font-size: clamp(13px, 3.8vw, 16px);
+  }
+
+  #invitation .date-main strong {
+    font-size: clamp(43px, 13vw, 55px);
+  }
+
+  #invitation .date-slash {
+    font-size: clamp(52px, 15vw, 64px);
+  }
+
+  #invitation .lunar {
+    margin-top: 9px;
+    font-size: clamp(14px, 3.8vw, 17px);
+  }
+}
+
+
+/* ===================================================
+   POLISH: WELCOME SCREEN + CALENDAR + RESPONSIVE
+   =================================================== */
+.welcome-overlay {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.welcome-box {
+  position: relative;
+  animation: welcomeRise 0.75s cubic-bezier(.2,.75,.25,1) both;
+}
+
+.welcome-couple {
+  max-width: 100%;
+  font-size: clamp(1.8rem, 7vw, 2.35rem);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.welcome-btn {
+  min-height: 46px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.welcome-btn:focus-visible,
+.interactive-envelope-wrap:focus-visible,
+.action:focus-visible {
+  outline: 3px solid #a8c8a7;
+  outline-offset: 4px;
+}
+
+@keyframes welcomeRise {
+  from { opacity: 0; transform: translateY(18px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Lịch gọn, rõ ngày trong tuần và vẫn nổi trên ảnh cưới */
+.calendar-card {
+  width: clamp(260px, 72%, 350px);
+  min-width: 0;
+  padding: clamp(13px, 3vw, 5px) clamp(14px, 3.5vw, 5px);
+  border-color: rgba(36, 91, 70, .16);
+  box-shadow: 0 14px 34px rgba(35, 55, 42, .14);
+}
+
+.month {
+  font-size: clamp(23px, 5vw, 28px);
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.calendar-grid {
+  gap: clamp(3px, 1vw, 0px);
+  margin-top: 8px;
+  font-size: clamp(10px, 2.6vw, 15px);
+}
+
+.calendar-grid span {
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.calendar-grid .weekday {
+  color: var(--olive);
+  font-size: .9em;
+  font-weight: 600;
+}
+
+.calendar-grid .day {
+  justify-self: center;
+  width: min(100%, 30px);
+  min-height: 25px;
+}
+
+.calendar-grid .chosen {
+  background: var(--blue);
+  color: #fff !important;
+  box-shadow: 0 3px 9px rgba(36, 91, 70, .24);
+}
+
+.interactive-envelope-wrap {
+  max-width: calc(100vw - 36px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 480px) {
+  .welcome-overlay { padding: 18px; }
+  .welcome-box { padding: 34px 20px; border-radius: 21px; }
+  .welcome-couple { font-size: clamp(1.75rem, 8vw, 2.15rem); }
+  .save-date-container { width: min(92%, 580px); margin-top: 82px; }
+  .calendar-card { top: -200px; width: min(82%, 330px); padding: 13px 14px; }
+  .save-date-photo-wrap img { height: clamp(340px, 66vw, 430px); }
+}
+
+@media (max-width: 360px) {
+  .calendar-card { top: -200px; width: 88%; }
+  .calendar-grid { gap: 2px; }
+  .welcome-couple { font-size: 1.7rem; }
+  .interactive-envelope-wrap { transform: scale(.94); transform-origin: top center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-box { animation: none; }
+  .welcome-overlay,
+  .interactive-envelope-wrap,
+  .env-card,
+  .env-flap-top,
+  .env-seal { transition-duration: .01ms !important; }
+}
+
+
+/* ===================================================
+   FINAL REFINEMENTS: SAVE THE DATE, ENVELOPE & CLOSING
+   =================================================== */
+/* Đẩy riêng ảnh xuống dưới, giữ lịch ở vị trí hiện tại để không che gương mặt */
+.save-date-photo-wrap {
+  margin-top: 48px;
+}
+
+/* Countdown rõ và nổi bật hơn một nhịp */
+.countdown { gap: 10px; }
+.count-box {
+  min-width: 62px;
+  padding: 10px 6px;
+  font-size: 11px;
+  border-radius: 9px;
+}
+.count-box strong { font-size: 23px; line-height: 1.12; }
+.count-label { font-size: 22px; margin-bottom: 6px; }
+
+/* Phong bì tăng tỷ lệ vừa phải, vẫn co giãn theo màn hình */
+.interactive-envelope-wrap {
+  width: min(500px, 92vw);
+  height: 250px;
+}
+.interactive-envelope { height: 245px; }
+.env-card { height: 220px; }
+.env-flap-top { height: 123px; }
+.env-seal { top: 105px; }
+.wax-seal { width: 46px; height: 46px; }
+
+/* Lời kết độc lập, không còn ảnh nền */
+.closing-wrap {
+  position: relative;
+  width: 100%;
+  margin: 34px auto 0;
+  padding: clamp(54px, 8vw, 0px) 24px clamp(48px, 7vw, 0px);
+  overflow: hidden;
+  background: linear-gradient(180deg, #fbfaf7 0%, #f3f0e9 100%);
+  border-top: 1px solid rgba(36, 91, 70, .13);
+  border-bottom: 1px solid rgba(36, 91, 70, .13);
+  text-align: center;
+}
+.closing-text {
+  position: relative;
+  inset: auto;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 0;
+  color: #514b43;
+  text-shadow: none;
+  font: 19px/1.75 "Cormorant Garamond", serif;
+}
+.closing-kicker {
+  display: block;
+  color: var(--olive);
+  font: 600 10px/1.4 Montserrat, sans-serif;
+  letter-spacing: .24em;
+}
+.closing-rule {
+  display: block;
+  width: 42px;
+  height: 1px;
+  margin: 19px auto 22px;
+  background: var(--olive);
+  opacity: .7;
+}
+.closing-text p { margin: 0 auto 4px; }
+.closing-text .script {
+  display: block;
+  margin-top: 23px;
+  color: var(--blue);
+  font: 32px/1.25 "Great Vibes", cursive;
+  text-shadow: none;
+}
+.closing-names {
+  display: block;
+  margin-top: 5px;
+  color: #3f493f;
+  font: 500 clamp(19px, 3.5vw, 25px)/1.4 "Cormorant Garamond", serif;
+}
+.closing-names i { color: var(--olive); font-style: normal; padding: 0 5px; }
+.closing-date {
+  display: block;
+  margin-top: 18px;
+  color: #8b9185;
+  font: 10px/1.5 Montserrat, sans-serif;
+  letter-spacing: .22em;
+}
+.closing-ornament {
+  margin: 0 auto 18px;
+  color: var(--olive);
+  font-size: 18px;
+  opacity: .75;
+}
+.closing-ornament-bottom { margin: 24px auto 0; font-size: 13px; }
+
+@media (max-width: 480px) {
+  .save-date-photo-wrap { margin-top: 42px; }
+  .countdown { gap: 6px; }
+  .count-box { min-width: 57px; padding: 9px 4px; font-size: 10px; }
+  .count-box strong { font-size: 22px; }
+  .interactive-envelope-wrap { width: min(360px, 92vw); height: 238px; }
+  .interactive-envelope { height: 232px; }
+  .env-card { height: 208px; }
+  .env-flap-top { height: 116px; }
+  .env-seal { top: 99px; }
+  .closing-wrap { padding: 48px 20px 42px; }
+  .closing-text { font-size: 17px; }
+  .closing-text .script { font-size: 29px; }
+}
+.save-the-date-section{    
+  padding-bottom: 60px;
+  margin-top: 60px;
+}
+/* ENVELOPE PHOTO CARD: taller portrait feel */
+@media (min-width: 481px) {
+  .interactive-envelope-wrap {
+    height: 285px;
+  }
+  .interactive-envelope {
+    height: 280px;
+  }
+  .env-card {
+    height: 255px;
+  }
+  .env-flap-top {
+    height: 135px;
+  }
+  .env-seal {
+    top: 118px;
+  }
+  .interactive-envelope-wrap.opened .env-card {
+    transform: translateY(-78px);
+  }
+}
+
+@media (max-width: 480px) {
+  .interactive-envelope-wrap {
+    height: 270px;
+  }
+  .interactive-envelope {
+    height: 265px;
+  }
+  .env-card {
+    height: 240px;
+  }
+  .env-flap-top {
+    height: 130px;
+  }
+  .env-seal {
+    top: 112px;
+  }
+  .interactive-envelope-wrap.opened .env-card {
+    transform: translateY(-72px);
+  }
+}
+
+/* FIX: seal the envelope flap-to-pocket seam after increasing envelope height */
+.interactive-envelope .env-flap-top {
+  /* The flap tip must overlap the pocket's 50% center point to avoid hairline gaps. */
+  height: calc(50% + 2px);
+}

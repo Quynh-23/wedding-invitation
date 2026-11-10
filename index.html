@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="#e4f0dc" name="theme-color"/>
+  <title>
+   Thiệp cưới | Trần Thị Ngọc &amp; Nguyễn Toàn Trung
+  </title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=Great+Vibes&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+  <!-- Style CSS -->
+  <link href="css/style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <!-- MÀN HÌNH CHÀO MỞ THIỆP & TỰ ĐỘNG PHÁT NHẠC -->
+  <div class="welcome-overlay" id="welcome-overlay">
+   <div class="welcome-box">
+    <div class="welcome-eyebrow">
+     WEDDING INVITATION
+    </div>
+    <div class="welcome-couple" id="welcomeCouple">
+     Trần Thị Ngọc &amp; Nguyễn Toàn Trung
+    </div>
+    <div class="welcome-date" id="welcomeDate">
+     28.11.2026
+    </div>
+    <div class="welcome-ring">
+     💍
+    </div>
+    <button class="welcome-btn" id="open-card-btn" type="button">
+     <span>
+      ✉ Chạm &dstrok;ể mở thiệp
+     </span>
+    </button>
+   </div>
+  </div>
+  <!-- NÚT ĐIỀU KHIỂN NHANH (NHẠC & HỘP QUÀ) -->
+  <div class="top-actions">
+   <button aria-label="Bật nhạc" class="action" id="musicBtn" title="Bật/tắt nhạc">
+    ♫
+   </button>
+   <button aria-label="Mở hộp qu&agrave;" class="action dark" id="giftOpenTop" title="Hộp qu&agrave;">
+    ♡
+   </button>
+  </div>
+  <main class="site">
+   <!-- HERO / BANNER ĐẦU TRANG -->
+   <header class="hero" id="home">
+    <div class="hero-heading">
+     <p class="monogram">
+      Lễ Vu Quy
+     </p>
+     <h1 class="couple-names">
+      <span id="brideTop">Thị Ngọc</span>
+      <span class="amp">&amp;</span>
+      <span id="groomTop">Toàn Trung</span>
+     </h1>
+     <!-- <div class="event-strip">
+      <div id="heroDate">
+       28 TH&Aacute;NG 11
+       <br/>
+       2026
+      </div>
+      <div id="heroTime">08:00<br/>THỨ BẢY</div>
+      <div id="heroPlace">TƯ GIA NỮ<br/>KIỀU HUYÊN · PHÙ CÁT · GIA LAI</div>
+     </div> -->
+    </div>
+   </header>
+   <!-- INTRO & PHONG THƯ -->
+   <section class="intro">
+    <!-- PHONG BÌ TƯƠNG TÁC MỞ THIỆP -->
+     <div class="date-label" id="dateLabel">
+     28.11.2026
+    </div>
+    <div class="rule">
+    </div>
+    <div aria-label="Mở phong b&igrave; thiệp cưới" class="interactive-envelope-wrap" id="envelopeWrap" role="button" tabindex="0" aria-expanded="false" aria-label="Mở phong bì thiệp cưới">
+     <div class="interactive-envelope">
+      <div class="env-back">
+      </div>
+      <!-- Tấm ảnh cưới trượt lên -->
+      <div class="env-card">
+       <img alt="Khoảnh khắc c&ocirc; d&acirc;u ch&uacute; rể" onerror="this.src='images/gallery-3-3.jpg';" src="images/gallery-3-3.jpg"/>
+      </div>
+      <!-- Nắp phong bì -->
+      <div class="env-flap-top">
+      </div>
+      <!-- Túi phong bì -->
+      <div class="env-pocket">
+      </div>
+      <div class="env-seal">
+       <div class="wax-seal">
+        <img alt="Golden wax seal" class="seal-icon" src="images/icons/gold-seal.png"/>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- THIỆP MỜI TRANG TRỌNG -->
+   <section class="invitation" id="invitation">
+     <div class="invitation-inner">
+      <div class="invitation-monogram">
+        <img src="images/logo.png" alt="N & T">
+      </div>
+      <div class="families">
+       <div class="family">
+        <div class="family-heading">NHÀ GÁI</div>
+        <p>ÔNG <strong>TRẦN SƠN</strong><br/>BÀ <strong>ĐẶNG THỊ LY</strong><br/><em>Phù Cát - Gia Lai</em></p>
+       </div>
+       <div class="family">
+        <div class="family-heading">NHÀ TRAI</div>
+        <p>ÔNG <strong>NGUYỄN VĂN TÍNH</strong><br/>BÀ <strong>NGUYỄN THỊ NGỌC</strong><br/><em>Phù Cát - Gia Lai</em></p>
+       </div>
+      </div>
+      <p class="invitation-announcement">TRÂN TRỌNG BÁO TIN<br/>LỄ VU QUY CỦA HAI CON CHÚNG TÔI</p>
+      <div class="names-large" style="margin: 0px; padding: 0px;">
+          <img src="images/couple-names.png" alt="Trần Thị Ngọc và Nguyễn Toàn Trung">
+      </div>
+      <div class="ceremony-details">
+        <p class="invitation-venue-label">
+          HÔN LỄ ĐƯỢC CỬ HÀNH TẠI <strong>TƯ GIA NỮ</strong>
+        </p>
+        <div class="venue">TƯ GIA NỮ</div>
+        <p class="subvenue">THÔN KIỀU HUYÊN - XÃ PHÙ CÁT<br/>TỈNH GIA LAI</p>
+        <p class="invitation-time-label">VÀO LÚC 11:00</p>
+
+        <div class="invitation-date">
+          <div class="date-side date-weekday">
+          <span id="invitationWeekday">THỨ BẢY</span>
+          </div>
+
+          <div class="date-main" aria-label="Ngày 28 tháng 11">
+          <strong id="invitationDayMonth" style="margin-bottom: 30px;">28</strong>
+          <span class="date-slash" aria-hidden="true">/</span>
+          <strong id="invitationMonth" style="margin-top: 30px;">11</strong>
+          </div>
+
+          <div class="date-side date-year">
+          <strong id="invitationYear">NĂM 2026</strong>
+          </div>
+        </div>
+
+        <div class="lunar" id="lunarDate">
+          (Nhằm ngày 20 tháng 10 năm Bính Ngọ)
+        </div>
+      </div>
+      <!-- <div class="reception-invite">
+       <div class="reception-script">Trân trọng kính mời</div>
+       <div class="guest-placeholder">................................................</div>
+       <p>ĐẾN DỰ BUỔI TIỆC CƯỚI<br/>CHUNG VUI CÙNG GIA ĐÌNH CHÚNG TÔI TẠI</p>
+       <div class="venue">TƯ GIA NỮ</div>
+       <p class="subvenue">THÔN KIỀU HUYÊN - XÃ PHÙ CÁT<br/>TỈNH GIA LAI</p>
+       <p class="reception-time">VÀO LÚC: 11 GIỜ 00<br/>THỨ BẢY</p>
+       <div class="reception-date">28.11.2026</div>
+       <div class="lunar">(Nhằm ngày 20 tháng 10 năm Bính Ngọ)</div>
+      </div> -->
+      <button class="btn" id="mapBtn" type="button">CHỈ ĐƯỜNG ↗</button>
+     </div>
+    </section>
+   <!-- TIMELINE & DRESSCODE -->
+   <!-- <section class="soft-panel">
+    <h2 class="section-title">
+     Timeline
+    </h2>
+    <div class="timeline-grid">
+     <div>
+      <div class="event-icon">
+       💍
+      </div>
+      <div class="event-time">
+       10:30
+      </div>
+      <div class="event-caption">
+       Lễ th&agrave;nh h&ocirc;n
+       <br/>
+       <small>
+        (Tư gia nh&agrave; trai)
+       </small>
+      </div>
+     </div>
+     <div>
+      <div class="event-icon">
+       📷
+      </div>
+      <div class="event-time">
+       11:00
+      </div>
+      <div class="event-caption">
+       &Dstrok;&oacute;n kh&aacute;ch &amp; Chụp ảnh
+       <br/>
+       <small>
+        (Nh&agrave; h&agrave;ng Vườn Nắng)
+       </small>
+      </div>
+     </div>
+     <div>
+      <div class="event-icon">
+       🥂
+      </div>
+      <div class="event-time">
+       11:30
+      </div>
+      <div class="event-caption">
+       Khai tiệc mừng
+       <br/>
+       <small>
+        (C&ugrave;ng n&acirc;ng ly chung vui)
+       </small>
+      </div>
+     </div>
+    </div>
+    <h2 class="section-title" style="margin-top:58px">
+     Dresscode
+    </h2>
+    <div class="swatches">
+     <span class="swatch" style="background:#d0cedc" title="Lavender">
+     </span>
+     <span class="swatch" style="background:#875b52" title="Mocha">
+     </span>
+     <span class="swatch" style="background:#a9a6b7" title="Mauve">
+     </span>
+     <span class="swatch" style="background:#f8f6fa" title="Ivory">
+     </span>
+     <span class="swatch" style="background:#66514f" title="Cocoa">
+     </span>
+    </div>
+    <p style="font-size:13px;line-height:1.8;max-width:440px;margin:auto">
+     Trang phục bạn cảm thấy thoải m&aacute;i v&agrave; tự tin lu&ocirc;n l&agrave; lựa chọn &dstrok;ẹp nhất. Rất mong bạn c&oacute; thể &dstrok;ến sớm &dstrok;ể c&ugrave;ng ch&uacute;ng m&igrave;nh lưu lại những tấm h&igrave;nh thật &dstrok;ẹp!
+    </p>
+   </section> -->
+   <!-- SAVE THE DATE & COUNTDOWN (BỐ CỤC LỒNG NHAU) -->
+   <section class="save-the-date-section" style="padding-bottom:60px">
+    <div class="save-date-container">
+     <!-- Bảng lịch nhỏ đè lệch góc trên bên phải -->
+     <div class="calendar-card overlay-calendar">
+      <div class="month" id="monthTitle">
+       Th&aacute;ng 11, 2026
+      </div>
+      <div class="calendar-grid" id="calendarGrid">
+      </div>
+     </div>
+     <!-- Khung ảnh cưới nền trung tâm -->
+     <div class="save-date-photo-wrap">
+      <img alt="Ảnh cưới Trần Thị Ngọc &amp; Nguyễn Toàn Trung" class="save-date-photo" onerror="this.src='images/hero.jpg';" src="images/gallery-1.jpg"/>
+     </div>
+     <!-- Cụm đếm ngược lồng ở mép dưới bức ảnh -->
+     <div class="countdown-wrap overlay-countdown">
+      <div class="count-label">
+       Chỉ c&ograve;n...
+      </div>
+      <div class="countdown">
+       <div class="count-box">
+        <strong id="days">
+         --
+        </strong>
+        ng&agrave;y
+       </div>
+       <div class="count-box">
+        <strong id="hours">
+         --
+        </strong>
+        giờ
+       </div>
+       <div class="count-box">
+        <strong id="minutes">
+         --
+        </strong>
+        ph&uacute;t
+       </div>
+       <div class="count-box">
+        <strong id="seconds">
+         --
+        </strong>
+        gi&acirc;y
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <!-- RSVP FORM -->
+   <section id="rsvp" style="padding-top:8px">
+    <form class="form-card" id="rsvpForm">
+     <h3>
+      X&aacute;c nhận tham dự
+     </h3>
+     <div class="field">
+      <label for="guestName">
+       Họ v&agrave; t&ecirc;n *
+      </label>
+      <input id="guestName" maxlength="100" name="guestName" placeholder="Nhập t&ecirc;n của bạn" required=""/>
+     </div>
+     <div class="field">
+      <label>
+       Bạn sẽ tham dự chứ?
+      </label>
+      <label class="radio-line">
+       <input checked="" name="attendance" type="radio" value="C&oacute; tham dự"/>
+       C&oacute;, m&igrave;nh sẽ tham dự
+      </label>
+      <label class="radio-line">
+       <input name="attendance" type="radio" value="Kh&ocirc;ng thể tham dự"/>
+       Rất tiếc, m&igrave;nh kh&ocirc;ng thể tham dự
+      </label>
+     </div>
+     <div class="field">
+      <label for="guestCount">
+       Số lượng người tham dự
+      </label>
+      <select id="guestCount" name="guestCount">
+       <option value="1">
+        1 người
+       </option>
+       <option value="2">
+        2 người
+       </option>
+       <option value="3">
+        3 người
+       </option>
+       <option value="4">
+        4 người
+       </option>
+       <option value="5+">
+        5 người trở l&ecirc;n
+       </option>
+      </select>
+     </div>
+     <div class="field">
+      <label for="guestMessage">
+       Lời ch&uacute;c (kh&ocirc;ng bắt buộc)
+      </label>
+      <textarea id="guestMessage" maxlength="500" name="guestMessage" placeholder="Gửi &dstrok;&ocirc;i lời y&ecirc;u thương &dstrok;ến c&ocirc; d&acirc;u ch&uacute; rể..." rows="3"></textarea>
+     </div>
+     <button class="btn" type="submit">
+      GỬI X&Aacute;C NHẬN
+     </button>
+     <div aria-live="polite" class="form-msg" id="formMsg">
+     </div>
+     <p style="font-size:10px;line-height:1.6;color:#999;margin:12px 0 0">
+      Phản hồi &dstrok;ược lưu tạm thời tr&ecirc;n tr&igrave;nh duyệt n&agrave;y trong bản demo.
+     </p>
+    </form>
+   </section>
+   <!-- CHUYỆN TÌNH YÊU
+    <section class="story">
+      <h2 class="section-title">Chuyện kể rằng...</h2>
+      <p>
+        <strong style="font-weight:500">Trung & Ngọc!</strong><br>
+        Có những cuộc gặp gỡ khiến hành trình bình thường trở nên thật đặc biệt. Chúng mình đã tìm thấy nhau, cùng lớn lên trong yêu thương, sẻ chia từng niềm vui nỗi buồn trong cuộc sống. Và hôm nay, chúng mình quyết định cùng nhau bước sang một trang mới bằng một lời hứa chung đôi, chung nhà, chung tương lai.<br>
+        Sự hiện diện của bạn sẽ làm ngày vui của chúng mình trọn vẹn hơn rất nhiều!
+      </p>
+      <div class="signature">Toàn Trung & Thị Ngọc</div>
+    </section> -->
+   <!-- KỶ NIỆM / GALLERY SLIDE -->
+   <section class="gallery">
+    <h2 class="section-title">
+     Kỷ niệm của ch&uacute;ng m&igrave;nh
+    </h2>
+    <div class="gallery-frame">
+     <img alt="Ảnh cưới &dstrok;ẹp" class="gallery-main" id="galleryMain" onerror="this.src='images/hero.jpg';" src="images/gallery-1.jpg"/>
+     <div class="gallery-controls">
+      <button aria-label="Ảnh trước" id="prevPhoto">
+       &lsaquo;
+      </button>
+      <button aria-label="Ảnh tiếp theo" id="nextPhoto">
+       &rsaquo;
+      </button>
+     </div>
+     <div class="thumbs" id="thumbs">
+     </div>
+    </div>
+    <p class="rsvp-note" style="margin-top:34px">
+     &Dstrok;ừng qu&ecirc;n gửi x&aacute;c nhận tham dự trước ng&agrave;y 20.11.2026 &dstrok;ể ch&uacute;ng m&igrave;nh c&oacute; thể &dstrok;&oacute;n tiếp bạn chu &dstrok;&aacute;o nhất nh&eacute;!
+    </p>
+   </section>
+
+   <!-- LỜI KẾT -->
+   <section class="closing-wrap" aria-label="Lời cảm ơn">
+    <div class="closing-ornament" aria-hidden="true">✦</div>
+    <div class="closing-text">
+     <span class="closing-kicker">A NOTE OF THANKS</span>
+     <span class="closing-rule" aria-hidden="true"></span>
+     <p>Cảm ơn bạn đã luôn đồng hành và yêu thương chúng mình.</p>
+     <p>Sự hiện diện của bạn chính là niềm hạnh phúc lớn nhất.</p>
+     <span class="script">With love,</span>
+     <span class="closing-names">Trần Thị Ngọc <i>&amp;</i> Nguyễn Toàn Trung</span>
+     <span class="closing-date">28 · 11 · 2026</span>
+    </div>
+    <div class="closing-ornament closing-ornament-bottom" aria-hidden="true">✦</div>
+   </section>
+  </main>
+  <!-- POPUP HỘP QUÀ TẶNG / TÀI KHOẢN NGÂN HÀNG -->
+  <div aria-labelledby="giftTitle" aria-modal="true" class="modal" id="giftModal" role="dialog">
+   <div class="modal-card">
+    <h3 id="giftTitle">
+     Hộp Qu&agrave; Y&ecirc;u Thương
+    </h3>
+    <p>
+     Cảm ơn t&igrave;nh cảm v&agrave; sự ch&uacute;c ph&uacute;c ngọt ng&agrave;o của bạn d&agrave;nh cho ch&uacute;ng m&igrave;nh!
+    </p>
+    <div class="bank-grid">
+     <div class="bank">
+      <strong>
+       Ch&uacute; rể
+      </strong>
+      <div class="qr">
+       <span>
+        QR CODE
+        <br/>
+        CH&Uacute; RỂ
+       </span>
+      </div>
+      <strong>
+       TO&Agrave;N TRUNG
+      </strong>
+      <small>
+       NG&Acirc;N H&Agrave;NG
+       <br/>
+       <span id="groomAccount">
+        0123 456 789
+       </span>
+      </small>
+      <button class="copy" data-copy="0123456789">
+       Sao ch&eacute;p số TK
+      </button>
+     </div>
+     <div class="bank">
+      <strong>
+       C&ocirc; d&acirc;u
+      </strong>
+      <div class="qr">
+       <span>
+        QR CODE
+        <br/>
+        C&Ocirc; D&Acirc;U
+       </span>
+      </div>
+      <strong>
+       THỊ NGỌC
+      </strong>
+      <small>
+       NG&Acirc;N H&Agrave;NG
+       <br/>
+       <span id="brideAccount">
+        9876 543 210
+       </span>
+      </small>
+      <button class="copy" data-copy="9876543210">
+       Sao ch&eacute;p số TK
+      </button>
+     </div>
+    </div>
+    <button class="close" id="giftClose">
+     &Dstrok;&oacute;ng
+    </button>
+   </div>
+  </div>
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast" role="status">
+  </div>
+  <!-- NHẠC NỀN -->
+  <audio id="bgMusic" loop="" preload="auto" src="audio/bai-hat-cuoi.mp3">
+  </audio>
+  <!-- SCRIPT -->
+  <script src="js/script.js">
+  </script>
+ </body>
+</html>
