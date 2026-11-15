@@ -28,9 +28,6 @@ const PHOTO_LIST = [
   "images/gallery-3-4.jpg",
   "images/gallery-3-5.jpg",
   "images/gallery-3-6.jpg",
-  "images/gallery-3-7.jpg",
-  "images/gallery-3-8.jpg",
-  "images/gallery-3-9.jpg",
   "images/gallery-4.jpg",
   "images/gallery-5.jpg"
 ];
