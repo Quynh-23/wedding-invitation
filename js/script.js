@@ -21,13 +21,14 @@ const WEDDING = {
 
 const PHOTO_LIST = [
   "images/gallery-2.jpg",
-  "images/gallery-3.jpg",
+  "images/gallery-3-6.jpg",
   "images/gallery-3-1.jpg",
   "images/gallery-3-2.jpg",
+  "images/gallery-3.jpg",
   "images/gallery-3-3.jpg",
   "images/gallery-3-4.jpg",
   "images/gallery-3-5.jpg",
-  "images/gallery-3-6.jpg",
+  
 ];
 
 const $ = (id) => document.getElementById(id);
