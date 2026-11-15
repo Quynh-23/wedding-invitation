@@ -20,17 +20,26 @@ const WEDDING = {
 };
 
 const PHOTO_LIST = [
+<<<<<<< HEAD
+=======
+  "images/gallery-1.jpg",
+>>>>>>> 48a5e9aadb643e1f1f39ac6c3f53820bb97b18df
   "images/gallery-2.jpg",
   "images/gallery-3.jpg",
   "images/gallery-3-1.jpg",
   "images/gallery-3-2.jpg",
   "images/gallery-3-3.jpg",
+<<<<<<< HEAD
   "images/gallery-3-4.jpg",
   "images/gallery-3-5.jpg",
   "images/gallery-3-6.jpg",
   "images/gallery-3-7.jpg",
   "images/gallery-3-8.jpg",
   "images/gallery-3-9.jpg",
+=======
+  "images/gallery-4.jpg",
+  "images/gallery-5.jpg"
+>>>>>>> 48a5e9aadb643e1f1f39ac6c3f53820bb97b18df
 ];
 
 const $ = (id) => document.getElementById(id);
@@ -53,12 +62,16 @@ function closeGift() {
 }
 
 if ($('giftOpen')) $('giftOpen').addEventListener('click', openGift);
+<<<<<<< HEAD
 // Nút trái tim trên đầu trang đưa khách đến ô gửi lời chúc trong RSVP.
 if ($('giftOpenTop')) $('giftOpenTop').addEventListener('click', () => {
   const target = $('guestMessage') || $('rsvp');
   target?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   window.setTimeout(() => target?.focus({ preventScroll: true }), 450);
 });
+=======
+if ($('giftOpenTop')) $('giftOpenTop').addEventListener('click', openGift);
+>>>>>>> 48a5e9aadb643e1f1f39ac6c3f53820bb97b18df
 if ($('giftClose')) $('giftClose').addEventListener('click', closeGift);
 
 if ($('giftModal')) {
@@ -70,12 +83,23 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeGift();
 });
 
+<<<<<<< HEAD
 // Google Maps
 const MAP_URL = "https://www.google.com/maps/place/13%C2%B058'58.9%22N+109%C2%B004'57.9%22E/@13.983018,109.082753,17z/data=!3m1!4b1!4m4!3m3!8m2!3d13.983018!4d109.082753?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D";
 
 if ($('mapBtn')) {
   $('mapBtn').addEventListener('click', () => {
     window.open(MAP_URL, '_blank', 'noopener,noreferrer');
+=======
+// Nút mở bản đồ Google Maps
+if ($('mapBtn')) {
+  $('mapBtn').addEventListener('click', () => {
+    window.open(
+      'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(WEDDING.address),
+      '_blank',
+      'noopener'
+    );
+>>>>>>> 48a5e9aadb643e1f1f39ac6c3f53820bb97b18df
   });
 }
 
@@ -179,7 +203,11 @@ function applyConfig() {
 
   if ($('dateLabel')) $('dateLabel').textContent = day + '.' + month + '.' + year;
   if ($('welcomeDate')) $('welcomeDate').textContent = day + '.' + month + '.' + year;
+<<<<<<< HEAD
   // if ($('welcomeCouple')) $('welcomeCouple').textContent = WEDDING.brideFull + ' & ' + WEDDING.groomFull;
+=======
+  if ($('welcomeCouple')) $('welcomeCouple').textContent = WEDDING.brideFull + ' & ' + WEDDING.groomFull;
+>>>>>>> 48a5e9aadb643e1f1f39ac6c3f53820bb97b18df
   if ($('dateNumber')) $('dateNumber').textContent = day;
   if ($('yearSide')) $('yearSide').textContent = 'NĂM ' + year;
 
@@ -238,6 +266,7 @@ function showPhoto(i) {
 if ($('prevPhoto')) $('prevPhoto').addEventListener('click', () => showPhoto(activePhoto - 1));
 if ($('nextPhoto')) $('nextPhoto').addEventListener('click', () => showPhoto(activePhoto + 1));
 
+<<<<<<< HEAD
 // Form RSVP: gửi phản hồi qua FormSubmit đến hai email của gia đình.
 const RSVP_ENDPOINT = "https://formsubmit.co/ajax/toantrung.thingoc@gmail.com";
 if ($('rsvpForm')) {
@@ -299,6 +328,34 @@ if ($('rsvpForm')) {
         submitButton.textContent = 'GỬI XÁC NHẬN';
       }
     }
+=======
+// Form RSVP
+if ($('rsvpForm')) {
+  $('rsvpForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const entry = {
+      name: String(data.get('guestName')).trim(),
+      attendance: data.get('attendance'),
+      count: data.get('guestCount'),
+      message: String(data.get('guestMessage')).trim(),
+      createdAt: new Date().toISOString()
+    };
+    if (!entry.name) {
+      $('guestName').focus();
+      return;
+    }
+    try {
+      const entries = JSON.parse(localStorage.getItem('weddingRSVP') || '[]');
+      entries.push(entry);
+      localStorage.setItem('weddingRSVP', JSON.stringify(entries));
+      $('formMsg').textContent = 'Cảm ơn ' + entry.name + '! Phản hồi đã được ghi nhận.';
+    } catch (err) {
+      $('formMsg').textContent = 'Cảm ơn ' + entry.name + '! Phản hồi đã được ghi nhận.';
+    }
+    e.currentTarget.reset();
+    showToast('Đã ghi nhận phản hồi!');
+>>>>>>> 48a5e9aadb643e1f1f39ac6c3f53820bb97b18df
   });
 }
 
