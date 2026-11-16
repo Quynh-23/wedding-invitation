@@ -2087,35 +2087,147 @@ body, .site { background: #fbfcf8; }
 }
 
 
-/* ===== Final mobile spacing refinement (<=480px) ===== */
+/* ===== Mobile layout correction: preserve desktop composition, scale proportionally ===== */
 #wedding-fireworks { contain: strict; }
 @media (max-width: 480px) {
-  .hero { padding-top: 28px; padding-bottom: 2px; }
-  .monogram { font-size: 43px; line-height: 1; }
-  .couple-names { margin-top: 8px; line-height: 1; }
-  .site > .intro { padding: 12px 14px 0 !important; }
-  .date-label { margin: 0; font-size: 25px; line-height: 1.05; }
-  .rule { margin: 5px auto 7px; height: 1px; }
+  /* Header: keep the same hierarchy as desktop, only scale type and spacing. */
+  .hero {
+    padding: 34px 12px 8px !important;
+  }
+  .hero-heading { padding: 0 8px; }
+  .monogram {
+    font-size: clamp(39px, 10vw, 46px);
+    line-height: 1.08;
+    margin-bottom: 5px;
+  }
+  .couple-names {
+    font-size: clamp(29px, 8.2vw, 36px);
+    line-height: 1.08;
+    margin: 8px auto 0;
+    white-space: normal;
+  }
+  .couple-names .amp { padding: 0 4px; }
+
+  /* Intro: rule remains in normal flow and is never covered by the envelope. */
+  .site > .intro {
+    padding: 10px 12px 30px !important;
+  }
+  .date-label {
+    margin: 0;
+    font-size: clamp(23px, 6.4vw, 27px);
+    line-height: 1.15;
+  }
+  .rule {
+    display: block;
+    width: 42px;
+    margin: 10px auto 12px;
+    height: 1px;
+    position: relative;
+    z-index: 1;
+  }
   .interactive-envelope-wrap {
-    width: min(330px, 88vw);
-    height: 194px;
-    margin-top: 0;
-    margin-bottom: 0;
+    width: min(340px, 90vw);
+    height: 218px;
+    margin: 0 auto 12px;
+    transform: none;
   }
-  .interactive-envelope { height: 194px; }
-  .env-card { height: 176px; }
-  .env-flap-top { height: 98px; }
-  .env-seal { top: 82px; }
-  /* Giữ khoảng trống dành cho chuyển động của thiệp, không để ảnh đè lên rule. */
+  .interactive-envelope { height: 218px; }
+  .env-card { height: 198px; }
+  .env-flap-top { height: calc(50% + 2px); }
+  .env-seal { top: 98px; }
+  /* Opening lifts the photo card visually without collapsing the layout height. */
   .interactive-envelope-wrap.opened {
-    height: 132px;
-    margin-top: 46px;
-    margin-bottom: 0;
+    height: 218px;
+    margin: 0 auto 12px;
   }
-  .interactive-envelope-wrap.opened .env-card { transform: translateY(-76px); }
+  .interactive-envelope-wrap.opened .env-card {
+    transform: translateY(-78px);
+  }
   .interactive-envelope-wrap.opened .env-seal { opacity: 0; }
-  .site > .invitation { padding-top: 18px !important; padding-bottom: 28px !important; }
-  .invitation-monogram { margin-bottom: 14px; }
-  .invitation-monogram img { max-height: 62px; }
-  .gallery { padding-top: 32px !important; padding-bottom: 32px !important; }
+  .site > .intro > p {
+    max-width: 390px;
+    margin: 8px auto 0 !important;
+    padding: 0 8px;
+    font-size: 12px !important;
+    line-height: 1.65 !important;
+  }
+
+  /* Invitation: retain desktop's two-column family layout and typography hierarchy. */
+  .site > .invitation {
+    padding: 26px 14px 34px !important;
+  }
+  #invitation .invitation-inner {
+    padding: 0 4px !important;
+  }
+  #invitation .invitation-monogram { margin: 0 auto 12px; }
+  #invitation .invitation-monogram img { max-height: 66px; width: auto; }
+  #invitation .families {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 12px;
+    margin: 0 auto 24px;
+  }
+  #invitation .family { min-width: 0; }
+  #invitation .family-heading { font-size: 15px; }
+  #invitation .family p { font-size: 12px; line-height: 1.35; overflow-wrap: anywhere; }
+  #invitation .family em { font-size: 10px; }
+  .invitation-announcement { font-size: 16px; margin-bottom: 16px; }
+  #invitation .names-large {
+    width: 100%;
+    min-height: 0;
+    margin: 14px auto 20px;
+    padding: 14px 4px 12px;
+    font-size: clamp(43px, 11vw, 55px);
+    line-height: 1.02;
+  }
+  #invitation .couple-role { font-size: 11px; }
+  .reception-invite {
+    margin-top: 24px;
+    padding: 24px 14px;
+  }
+
+  /* Save-the-date: calendar overlaps the photo as on desktop, but stays below
+     the ceremony details instead of jumping 200px into the previous section. */
+  .save-the-date-section {
+    padding: 28px 16px 42px !important;
+    margin-top: 0;
+  }
+  .save-date-container {
+    width: min(100%, 420px);
+    margin: 148px auto 28px;
+  }
+  .calendar-card {
+    top: -132px;
+    width: min(82%, 320px);
+    min-width: 0;
+    padding: 12px 13px;
+  }
+  .month { font-size: 23px; margin-bottom: 8px; }
+  .calendar-grid { gap: 3px; margin-top: 6px; font-size: 13px; }
+  .calendar-grid .day { width: min(100%, 28px); min-height: 24px; }
+  .save-date-photo-wrap { margin-top: 0; }
+  .save-date-photo-wrap img { height: clamp(300px, 88vw, 360px); object-position: center 14%; }
+  .countdown { gap: 5px; }
+  .count-box { min-width: 54px; padding: 8px 4px; font-size: 10px; }
+  .count-box strong { font-size: 20px; }
+  .count-label { font-size: 19px; }
+
+  /* Keep album and RSVP comfortable without changing desktop sizing. */
+  .gallery { padding: 36px 14px !important; }
+  .gallery-main { height: clamp(220px, 68vw, 300px); }
+  .gallery-frame { padding: 6px; border-width: 4px; }
+  #rsvp { padding: 34px 14px 40px !important; }
+  #rsvp .form-card { padding: 22px 18px; }
+  #rsvp .field { margin: 12px 0; }
+  #rsvp .field input:not([type=radio]),
+  #rsvp .field select,
+  #rsvp .field textarea { padding: 11px 12px; }
+}
+
+@media (max-width: 360px) {
+  .couple-names { font-size: 28px; }
+  .interactive-envelope-wrap,
+  .interactive-envelope { width: 100%; }
+  .calendar-card { width: 88%; }
+  #invitation .family p { font-size: 11px; }
 }
