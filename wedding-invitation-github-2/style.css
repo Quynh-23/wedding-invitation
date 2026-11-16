@@ -859,12 +859,13 @@ section {
   justify-content: center;
   padding: 24px;
   text-align: center;
-  transition: opacity 0.55s ease, visibility 0.55s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease, transform 0.8s ease;
 }
 
 .welcome-overlay.opened {
   opacity: 0;
   visibility: hidden;
+  transform: scale(1.05);
   pointer-events: none;
 }
 
@@ -2045,48 +2046,76 @@ body, .site { background: #fbfcf8; }
   cursor: pointer;
 }
 
+/* Mobile compact layout: reduce vertical travel without changing desktop design. */
+@media (max-width: 480px) {
+  .site > section { padding-top: 42px; padding-bottom: 42px; }
+  .site > .intro { padding: 34px 16px 26px; }
+  .date-label { margin-top: 8px; font-size: 29px; }
+  .rule { margin-top: 12px; margin-bottom: 12px; }
+  .interactive-envelope-wrap {
+    width: min(330px, 88vw);
+    height: 218px;
+    margin-bottom: 0;
+  }
+  .interactive-envelope { height: 210px; }
+  .env-card { height: 188px; }
+  .env-flap-top { height: calc(50% + 2px); }
+  .env-seal { top: 96px; }
+  .interactive-envelope-wrap.opened { margin-top: 92px; }
+  .interactive-envelope-wrap.opened .env-card { transform: translateY(-88px); }
 
-/* ===== Performance and envelope-card refinement ===== */
-/* Keep the wedding photo itself visible without a large white backing card. */
-.env-card {
-  padding: 0 !important;
-  background: transparent !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  overflow: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  .invitation { padding: 34px 18px 38px !important; }
+  .invitation-inner { padding-top: 0; padding-bottom: 0; }
+  .invitation-monogram img { max-height: 76px; width: auto; }
+  .family p { line-height: 1.32; }
+
+  .save-the-date-section { padding-top: 42px !important; padding-bottom: 42px !important; margin-top: 28px; }
+  .save-date-container { margin-top: 68px; margin-bottom: 26px; }
+  .save-date-photo-wrap { margin-top: 30px; }
+  .save-date-photo-wrap img { height: clamp(285px, 82vw, 340px); }
+
+  .gallery { padding: 42px 16px !important; }
+  .gallery-main { height: clamp(220px, 62vw, 300px); }
+  .gallery-frame { padding: 6px; border-width: 4px; }
+
+  #rsvp { padding: 36px 16px 42px !important; }
+  #rsvp .form-card { padding: 22px 20px; }
+  #rsvp .field { margin: 12px 0; }
+  #rsvp .field input:not([type=radio]),
+  #rsvp .field select,
+  #rsvp .field textarea { padding: 11px 12px; }
 }
 
-.env-card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 0 !important;
-  object-fit: cover;
-  object-position: center 30%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
 
-/* Avoid animating the whole welcome layer with scale, which can flash its backdrop. */
-.welcome-overlay {
-  transform: none !important;
-  will-change: opacity;
-}
-
-.welcome-overlay.opened {
-  transform: none !important;
-}
-
-/* Promote only the pieces that actually move during the envelope animation. */
-.env-card,
-.env-flap-top,
-.env-seal {
-  transform-style: preserve-3d;
-}
-
-.interactive-envelope {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+/* ===== Final mobile spacing refinement (<=480px) ===== */
+#wedding-fireworks { contain: strict; }
+@media (max-width: 480px) {
+  .hero { padding-top: 28px; padding-bottom: 2px; }
+  .monogram { font-size: 43px; line-height: 1; }
+  .couple-names { margin-top: 8px; line-height: 1; }
+  .site > .intro { padding: 12px 14px 0 !important; }
+  .date-label { margin: 0; font-size: 25px; line-height: 1.05; }
+  .rule { margin: 5px auto 7px; height: 1px; }
+  .interactive-envelope-wrap {
+    width: min(330px, 88vw);
+    height: 194px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .interactive-envelope { height: 194px; }
+  .env-card { height: 176px; }
+  .env-flap-top { height: 98px; }
+  .env-seal { top: 82px; }
+  /* Giữ khoảng trống dành cho chuyển động của thiệp, không để ảnh đè lên rule. */
+  .interactive-envelope-wrap.opened {
+    height: 132px;
+    margin-top: 46px;
+    margin-bottom: 0;
+  }
+  .interactive-envelope-wrap.opened .env-card { transform: translateY(-76px); }
+  .interactive-envelope-wrap.opened .env-seal { opacity: 0; }
+  .site > .invitation { padding-top: 18px !important; padding-bottom: 28px !important; }
+  .invitation-monogram { margin-bottom: 14px; }
+  .invitation-monogram img { max-height: 62px; }
+  .gallery { padding-top: 32px !important; padding-bottom: 32px !important; }
 }
