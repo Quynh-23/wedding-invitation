@@ -42,6 +42,61 @@ function showToast(message) {
   showToast.timer = setTimeout(() => (t.style.display = 'none'), 2600);
 }
 
+
+// Pháo hoa hạt nhỏ màu xanh đồng bộ với tông thiệp.
+function launchGreenFireworks(duration = 1800) {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  let canvas = document.getElementById('wedding-fireworks');
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'wedding-fireworks';
+    canvas.setAttribute('aria-hidden', 'true');
+    Object.assign(canvas.style, { position: 'fixed', inset: '0', width: '100%', height: '100%',
+      pointerEvents: 'none', zIndex: '10001' });
+    document.body.appendChild(canvas);
+  }
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.round(innerWidth * dpr);
+  canvas.height = Math.round(innerHeight * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const colors = ['#245b46', '#3d8063', '#8db99a', '#c4d9c4', '#e2cda5'];
+  const particles = [];
+  const burst = (x, y) => {
+    for (let i = 0; i < 42; i++) {
+      const a = Math.PI * 2 * i / 42 + Math.random() * .08;
+      const speed = 1.5 + Math.random() * 3.2;
+      particles.push({ x, y, vx: Math.cos(a) * speed, vy: Math.sin(a) * speed,
+        life: 48 + Math.random() * 22, max: 70, size: 1.5 + Math.random() * 2,
+        color: colors[Math.floor(Math.random() * colors.length)] });
+    }
+  };
+  burst(innerWidth * (.25 + Math.random() * .2), innerHeight * (.22 + Math.random() * .22));
+  burst(innerWidth * (.58 + Math.random() * .2), innerHeight * (.18 + Math.random() * .25));
+  const started = performance.now();
+  let lastBurst = started;
+  function frame(now) {
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    if (now - lastBurst > 520 && now - started < duration - 350) {
+      burst(innerWidth * (.2 + Math.random() * .6), innerHeight * (.15 + Math.random() * .35));
+      lastBurst = now;
+    }
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy; p.vy += .035; p.vx *= .992; p.life--;
+      if (p.life <= 0) { particles.splice(i, 1); continue; }
+      ctx.globalAlpha = Math.min(1, p.life / 18);
+      ctx.fillStyle = p.color;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if (now - started < duration || particles.length) requestAnimationFrame(frame);
+    else canvas.remove();
+  }
+  requestAnimationFrame(frame);
+}
+
 // Modal Hộp Quà
 function openGift() {
   $('giftModal')?.classList.add('open');
@@ -213,6 +268,8 @@ PHOTO_LIST.forEach((src, i) => {
   b.type = 'button';
   b.setAttribute('aria-label', 'Xem ảnh ' + (i + 1));
   const img = document.createElement('img');
+  img.loading = 'lazy';
+  img.decoding = 'async';
   img.src = src;
   img.alt = 'Ảnh cưới ' + (i + 1);
   img.onerror = function () {
@@ -227,7 +284,10 @@ PHOTO_LIST.forEach((src, i) => {
 
 function showPhoto(i) {
   activePhoto = (i + PHOTO_LIST.length) % PHOTO_LIST.length;
-  if ($('galleryMain')) $('galleryMain').src = PHOTO_LIST[activePhoto];
+  if ($('galleryMain')) {
+    $('galleryMain').decoding = 'async';
+    $('galleryMain').src = PHOTO_LIST[activePhoto];
+  }
   if (thumbs) {
     [...thumbs.children].forEach((b, j) => b.classList.toggle('active', j === activePhoto));
   }
@@ -236,67 +296,132 @@ function showPhoto(i) {
 if ($('prevPhoto')) $('prevPhoto').addEventListener('click', () => showPhoto(activePhoto - 1));
 if ($('nextPhoto')) $('nextPhoto').addEventListener('click', () => showPhoto(activePhoto + 1));
 
-// Form RSVP: gửi phản hồi qua FormSubmit đến hai email của gia đình.
-const RSVP_ENDPOINT = "https://formsubmit.co/ajax/toantrung.thingoc@gmail.com";
+
+// Album tự chuyển ảnh, tạm dừng khi khách rê chuột hoặc thao tác bằng bàn phím.
+const galleryFrame = document.querySelector('.gallery-frame');
+let galleryPaused = false;
+if (galleryFrame && PHOTO_LIST.length > 1) {
+  galleryFrame.addEventListener('mouseenter', () => { galleryPaused = true; });
+  galleryFrame.addEventListener('mouseleave', () => { galleryPaused = false; });
+  galleryFrame.addEventListener('focusin', () => { galleryPaused = true; });
+  galleryFrame.addEventListener('focusout', () => { galleryPaused = false; });
+  window.setInterval(() => {
+    if (!galleryPaused && !document.hidden) showPhoto(activePhoto + 1);
+  }, 4200);
+}
+
+// Form RSVP: lưu phản hồi trực tiếp vào Google Sheets qua Google Apps Script.
+// Sau khi deploy Apps Script, dán URL Web App vào RSVP_SHEETS_ENDPOINT.
+const RSVP_SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycby4-rHgBOXwZWKRG777xKBWK6Q-3pGsyO44gyrI8Xhog5YxiuOdCSf3J7V_J8PUhELtog/exec';
 if ($('rsvpForm')) {
-  $('rsvpForm').addEventListener('submit', async (e) => {
+  $('rsvpForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const form = e.currentTarget;
     const submitButton = form.querySelector('button[type="submit"]');
+    const messageBox = $('formMsg');
     const data = new FormData(form);
     const entry = {
       name: String(data.get('guestName') || '').trim(),
-      attendance: data.get('attendance') || '',
-      count: data.get('guestCount') || '1',
+      attendance: String(data.get('attendance') || ''),
+      count: String(data.get('guestCount') || '1'),
       message: String(data.get('guestMessage') || '').trim(),
-      createdAt: new Date().toLocaleString('vi-VN')
+      requestId: (window.crypto && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : String(Date.now()) + '-' + Math.random().toString(36).slice(2)
     };
 
     if (!entry.name) {
       $('guestName')?.focus();
+      if (messageBox) messageBox.textContent = 'Bạn vui lòng nhập họ và tên nhé.';
       return;
     }
-
-    const payload = {
-      _subject: 'Xác nhận tham dự đám cưới: ' + entry.name,
-      _cc: 'hvdquynh85@gmail.com',
-      _template: 'table',
-      'Họ và tên': entry.name,
-      'Xác nhận tham dự': entry.attendance,
-      'Số lượng người': entry.count,
-      'Lời chúc': entry.message || '(Không có lời chúc)',
-      'Thời gian gửi': entry.createdAt
-    };
+    if (!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(RSVP_SHEETS_ENDPOINT)) {
+      if (messageBox) messageBox.textContent = 'Website chưa được cấu hình địa chỉ Google Sheets. Chủ thiệp cần hoàn tất bước cài đặt.';
+      console.error('Missing or invalid Google Apps Script Web App URL.');
+      return;
+    }
 
     if (submitButton) {
       submitButton.disabled = true;
       submitButton.textContent = 'ĐANG GỬI...';
     }
-    $('formMsg').textContent = 'Đang gửi phản hồi...';
+    if (messageBox) messageBox.textContent = 'Đang lưu phản hồi...';
 
-    try {
-      const response = await fetch(RSVP_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok || result.success === 'false' || result.success === false) {
-        throw new Error(result.message || 'Không thể gửi phản hồi.');
+    // Dùng form POST + iframe để tránh CORS/preflight với Google Apps Script.
+    const frameName = 'rsvp-submit-frame-' + entry.requestId.replace(/[^a-zA-Z0-9_-]/g, '');
+    const iframe = document.createElement('iframe');
+    iframe.name = frameName;
+    iframe.title = 'RSVP submission';
+    iframe.setAttribute('aria-hidden', 'true');
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    const hiddenForm = document.createElement('form');
+    hiddenForm.method = 'POST';
+    hiddenForm.action = RSVP_SHEETS_ENDPOINT;
+    hiddenForm.target = frameName;
+    hiddenForm.style.display = 'none';
+    const fields = {
+      name: entry.name,
+      attendance: entry.attendance,
+      count: entry.count,
+      message: entry.message,
+      requestId: entry.requestId
+    };
+    Object.entries(fields).forEach(([key, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      hiddenForm.appendChild(input);
+    });
+    document.body.appendChild(hiddenForm);
+
+    let completed = false;
+    const cleanup = () => {
+      window.removeEventListener('message', onMessage);
+      window.clearTimeout(timeoutId);
+      hiddenForm.remove();
+      window.setTimeout(() => iframe.remove(), 1000);
+    };
+    const onMessage = (event) => {
+      // Apps Script HtmlService có thể phát postMessage từ sandbox frame lồng bên trong iframe.
+      // Vì vậy không khóa event.source; requestId ngẫu nhiên dùng để xác thực đúng lượt gửi.
+      if (!event.data || event.data.requestId !== entry.requestId) return;
+      if (event.data.type === 'rsvp_saved' && event.data.success === true) {
+        completed = true;
+        cleanup();
+        if (messageBox) messageBox.textContent = 'Cảm ơn bạn đã gửi lời chúc và chia sẻ niềm vui cùng cô dâu chú rể!';
+        form.reset();
+        launchGreenFireworks(2400);
+        showToast('Cảm ơn bạn đã gửi lời chúc đến hai vợ chồng!');
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'GỬI XÁC NHẬN';
+        }
+      } else if (event.data.type === 'rsvp_saved' && event.data.success === false) {
+        completed = true;
+        cleanup();
+        console.error('Google Sheets RSVP error:', event.data.error || 'Unknown error');
+        if (messageBox) messageBox.textContent = 'Chưa lưu được phản hồi. Em vui lòng thử lại sau nhé.';
+        showToast('Gửi chưa thành công, vui lòng thử lại.');
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'GỬI XÁC NHẬN';
+        }
       }
-      $('formMsg').textContent = 'Cảm ơn ' + entry.name + '! Phản hồi đã được gửi thành công.';
-      form.reset();
-      showToast('Đã gửi phản hồi thành công!');
-    } catch (error) {
-      console.error('RSVP email error:', error);
-      $('formMsg').textContent = 'Chưa gửi được phản hồi. Bạn vui lòng thử lại sau ít phút nhé.';
-      showToast('Gửi chưa thành công, vui lòng thử lại.');
-    } finally {
+    };
+    window.addEventListener('message', onMessage);
+    const timeoutId = window.setTimeout(() => {
+      if (completed) return;
+      cleanup();
+      if (messageBox) messageBox.textContent = 'Chưa nhận được xác nhận từ Google Sheets. Em kiểm tra kết nối rồi thử lại nhé.';
       if (submitButton) {
         submitButton.disabled = false;
         submitButton.textContent = 'GỬI XÁC NHẬN';
       }
-    }
+    }, 20000);
+    hiddenForm.submit();
   });
 }
 
@@ -326,6 +451,7 @@ function playBackgroundMusic(showMessage = false) {
 }
 
 function openInvitation() {
+  launchGreenFireworks(1900);
   if (overlay && !overlay.classList.contains('opened')) {
     overlay.classList.add('opened');
   }
